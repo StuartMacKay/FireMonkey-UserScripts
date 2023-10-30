@@ -8,6 +8,11 @@
 // @require  https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js
 // ==/UserScript==
 
+// Not everyone who leaves a comment on Wings Over Scotland posts has
+// something useful to say. This script add an icon next to the name
+// of each commenter so you can temporarily hide all their comments,
+// until the page is reloaded.
+
 (function() {
   'use strict';
 

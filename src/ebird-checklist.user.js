@@ -14,11 +14,13 @@
 // @grant    none
 // ==/UserScript==
 
-// This script contains all the fixes and changes needed to make the pages showing
-// the checklist for a location more readable so it is easy to see what's been seen:
+// This script makes scanning through the Checklist page easier by:
 //
-// - move species where only their presence was record to the bottom of the list
-// - hide the Age & Sex table.
+// 1. moving observations where only the presence of a species was record
+//    to the bottom of the list.
+//
+// 2. hiding the Age & Sex table. It is of limited value, and takes up a
+//    lot of space.
 
 (function() {
   'use strict';

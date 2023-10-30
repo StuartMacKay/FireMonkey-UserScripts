@@ -13,6 +13,27 @@
 // @grant GM_addStyle
 // ==/UserScript==
 
+// This script makes reading through all the checklists listed on the eBird
+// Recent Visits page for a location or region easier by:
+//
+// 1. Changing the colour of visited links to dark orange so you can see what
+//    checklists you've read.
+//
+// 2. Adding an icon next to the name of the observer so you can temporarily
+//    hide all checklists from that person, until the page is reloaded.
+//
+// 3. Adding an icon next to the name of the location so you can temporarily
+//    hide all checklists from that location, until the page is reloaded. The
+//    greyed-out location icon is hidden to reduce the clutter on the page.
+//
+// 4. Opening all checklists in a new tab. That way you can click on all the
+//    lists you want to read without either using ctrl+click or having to
+//    navigate back to the Recent Visits page to select the next checklist.
+//
+// 5. Optional - commented out. Hiding all checklists that contain coordinates
+//    in the name. Usually these are for one-off or personal locations and
+//    often are of limited interest.
+
 // Show visited link so you can see what checklists you have read.
 GM_addStyle('div.Meta--date > a:visited { color: darkorange; }');
 
