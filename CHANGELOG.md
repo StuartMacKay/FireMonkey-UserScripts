@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project calendar based versioning to snapshot updates. This changelog
 is a human-friendly summary of the git log
 
-## Latest
+## 0.1.0 (2023-10-30)
 
 Consolidated scripts from different sources, freshened the code and generally
 made things work again / nice.
