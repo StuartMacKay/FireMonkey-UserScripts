@@ -63,6 +63,17 @@ GM_addStyle('svg.Icon--locationGeneric{ display: none; }');
     }
   });
 
+  // Hide all checklists that contain latitude and longitude in the name.
+
+//  const coords = /\-?\d{1,2}[.,]\d{1,5}[,x] ?\-?\d{1,2}[.,]\d{1,5}/;
+//
+//  $('div.Meta--location span.Meta-label').each(function () {
+//    let name = $(this).contents().text().trim();
+//    if (coords.test(name)) {
+//      $(this).closest('section.Observation--placeRecentVisits').css('display', 'none');
+//    }
+//  });
+
   // Open checklists in a new tab view.
 
   $('div.Meta--date a.Meta-label').each(function () {
