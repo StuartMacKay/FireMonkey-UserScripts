@@ -5,6 +5,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project calendar based versioning to snapshot updates. This changelog
 is a human-friendly summary of the git log
 
+## 0.2.1 (2023-10-30)
+
+### Changed
+
+- The link to hide observers or locations now uses a lowercase 'x'.
+
 ## 0.2.0 (2023-10-30)
 
 ### Added 

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name     eBird Recent Visits
-// @version  2.1.0
+// @version  2.1.1
 // @description Various fixes to make the Recent Visits page usable.
 // @include  https://ebird.org/region/*/activity*
 // @include  https://ebird.org/hotspot/*/activity*
@@ -19,10 +19,10 @@
 // 1. Changing the colour of visited links to dark orange so you can see what
 //    checklists you've read.
 //
-// 2. Adding an icon next to the name of the observer so you can temporarily
+// 2. Adding an 'x' next to the name of the observer so you can temporarily
 //    hide all checklists from that person, until the page is reloaded.
 //
-// 3. Adding an icon next to the name of the location so you can temporarily
+// 3. Adding an 'x' next to the name of the location so you can temporarily
 //    hide all checklists from that location, until the page is reloaded. The
 //    greyed-out location icon is hidden to reduce the clutter on the page.
 //
@@ -56,7 +56,7 @@ GM_addStyle('svg.Icon--locationGeneric{ display: none; }');
 
   $('div.Observation-species h3').each(function () {
     let name = $(this).contents().text().trim().replace(/\s{2,}/, ' ');
-    $(this).prepend('<span style="font-size: 1.2em; font-weight: normal; cursor: pointer;" title="Hide all checklists from ' + name + '">&#x2297;</span> ');
+    $(this).prepend('<span style="font-weight: normal; cursor: pointer; margin-right: 6px;" title="Hide all checklists from ' + name + '">x</span> ');
     $(this).attr('data-observer', name);
     $(this).children(":first").click(function () {
       hideObserver(name);
@@ -76,7 +76,7 @@ GM_addStyle('svg.Icon--locationGeneric{ display: none; }');
   $('div.Meta--location').each(function () {
     let name = $(this).contents().text().trim().replace(/\s{2,}/, ' ');
     if (name !== "Location") {
-      $(this).prepend('<span style="font-size: 1.5em; font-weight: normal; cursor: pointer;" title="Hide all checklists for ' + name + '">&#x2297;</span> ');
+      $(this).prepend('<span style="font-weight: normal; cursor: pointer; margin-right: 6px;" title="Hide all checklists for ' + name + '">x</span> ');
       $(this).attr('data-location', name);
       $(this).children(":first").click(function () {
         hideLocation(name);
