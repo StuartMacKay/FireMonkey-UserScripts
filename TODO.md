@@ -9,13 +9,18 @@ discarded.
 
 Here is what is planned, roughly in the order it will be implemented:
 
+### Recently completed
+
+A list of the last 10 tasks that were completed successfully. This does not
+replace the CHANGELOG. Instead, it gives you an idea of what is new and how
+active the project has been.
+
+#### Add a filter based on observer/location (2023-10-30)
+
+Added the ability to hide checklists for a selected location in the same 
+way that observers are hidden. This is more effective than a filter list 
+of observer/location pairs as a filter as nothing is hidden by default. 
+There are still times when you want to view a checklist that would otherwise 
+be hidden.
+
 ## Ideas
-
-### Add a filter based on observer/location
-
-It's great to keep a garden list but it's generally not interesting to anybody
-else. Same goes for a lot of patches (locations regularly visited by an observer
-and very few others, if any). Add a list of Observer / Location pairs to filter 
-out when a page is loaded. Again, the idea is to make the Recent Visits page 
-quick to read. Filtering out low values / low interest checklists saves a lot 
-of unnecessary clicking.
