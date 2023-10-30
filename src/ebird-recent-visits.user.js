@@ -31,7 +31,7 @@ GM_addStyle('div.Meta--date > a:visited { color: darkorange; }');
 
   $('div.Observation-species h3').each(function () {
     let name = $(this).contents().text().trim().replace(/\s{2,}/, ' ');
-    $(this).prepend('<span style="font-weight: normal; cursor: pointer; margin-right: 5px;" title="Hide all checklists from ' + name + '">x </span> ');
+    $(this).prepend('<span style="font-size: 1.2em; font-weight: normal; cursor: pointer;" title="Hide all checklists from ' + name + '">&#x2297;</span> ');
     $(this).attr('data-observer', name);
     $(this).children(":first").click(function () {
       hideObserver(name);
