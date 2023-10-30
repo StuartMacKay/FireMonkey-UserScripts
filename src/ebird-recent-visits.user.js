@@ -16,6 +16,10 @@
 // Show visited link so you can see what checklists you have read.
 GM_addStyle('div.Meta--date > a:visited { color: darkorange; }');
 
+// Hide all location icons. They don't so anything useful.
+GM_addStyle('svg.Icon--locationGeneric{ display: none; }');
+
+
 (function() {
   'use strict';
 
