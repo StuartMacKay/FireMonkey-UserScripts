@@ -42,14 +42,24 @@ GM_addStyle('svg.Icon--locationGeneric{ display: none; }');
     });
   });
 
-  // Hide all checklists that contain latitude and longitude in the name.
+  // Hide all checklists from selected locations.
 
-  const coords = /\-?\d{1,2}[.,]\d{1,5}[,x] ?\-?\d{1,2}[.,]\d{1,5}/;
+  function hideLocation(name) {
+    $('div.Meta--location').each(function () {
+      if (name ===  $(this).attr('data-location')) {
+        $(this).closest('section.Observation--placeRecentVisits').css('display', 'none');
+      }
+    });
+  }
 
-  $('div.Meta--location span.Meta-label').each(function () {
-    let name = $(this).contents().text().trim();
-    if (coords.test(name)) {
-      $(this).closest('section.Observation--placeRecentVisits').css('display', 'none');
+  $('div.Meta--location').each(function () {
+    let name = $(this).contents().text().trim().replace(/\s{2,}/, ' ');
+    if (name !== "Location") {
+      $(this).prepend('<span style="font-size: 1.5em; font-weight: normal; cursor: pointer;" title="Hide all checklists for ' + name + '">&#x2297;</span> ');
+      $(this).attr('data-location', name);
+      $(this).children(":first").click(function () {
+        hideLocation(name);
+      });
     }
   });
 
