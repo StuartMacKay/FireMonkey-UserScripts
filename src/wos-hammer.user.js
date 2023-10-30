@@ -21,7 +21,7 @@
 
   $('cite[class="fn"]').each(function () {
     let name = $(this).contents().text().trim();
-    $(this).prepend('<button style="cursor: default; padding: 0 4px" title="Hide all comments from ' + name + '">Hide</button> ');
+    $(this).prepend('<span style="font-size: 1.2em; font-weight: normal; cursor: pointer;" title="Hide all comments from ' + name + '">&#x2297;</span> ');
     $(this).attr('data-commenter', name);
     $(this).children(":first").click(function () {
       hideCommenter(name);
