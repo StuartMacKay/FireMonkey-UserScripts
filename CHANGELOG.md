@@ -5,6 +5,18 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/).
 This project calendar based versioning to snapshot updates. This changelog
 is a human-friendly summary of the git log
 
+## 0.2.0 (2023-10-30)
+
+### Added 
+
+- Comments summarising the features in each script.
+
+### Changed
+
+- Updated the Recent Visits script to hide checklists for a given location.
+- Updated the Recent Visits script to comment out hiding location with coordinates.
+- Updated the WOS Hammer script to replace the "hide" button with the &#x2297; character.
+
 ## 0.1.0 (2023-10-30)
 
 Consolidated scripts from different sources, freshened the code and generally
