@@ -2,8 +2,8 @@
 // @name     eBird Recent Visits
 // @version  2.1.1
 // @description Various fixes to make the Recent Visits page usable.
-// @include  https://ebird.org/region/*/activity*
-// @include  https://ebird.org/hotspot/*/activity*
+// @include  https://ebird.org/region/*/recent-checklists*
+// @include  https://ebird.org/hotspot/*/recent-checklists*
 // @require  https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js
 // @namespace https://github.com/StuartMacKay/userscripts/
 // @author smackay
@@ -30,12 +30,11 @@
 //    lists you want to read without either using ctrl+click or having to
 //    navigate back to the Recent Visits page to select the next checklist.
 //
-// 5. Optional - commented out. Hiding all checklists that contain coordinates
-//    in the name. Usually these are for one-off or personal locations and
-//    often are of limited interest.
+// 5. Show only checklists for hotspots. This is intended to clean out all
+//    the incidental checklists, which are often of little value.
 
 // Show visited link so you can see what checklists you have read.
-GM_addStyle('div.Meta--date > a:visited { color: darkorange; }');
+GM_addStyle('div.Chk-date a:visited { color: darkorange; }');
 
 // Hide all location icons. They don't so anything useful.
 GM_addStyle('svg.Icon--locationGeneric{ display: none; }');
@@ -47,17 +46,17 @@ GM_addStyle('svg.Icon--locationGeneric{ display: none; }');
   // Hide all checklists from selected observers.
 
   function hideObserver(name) {
-    $('div.Observation-species h3').each(function () {
+    $('li.Chk').each(function () {
       if (name ===  $(this).attr('data-observer')) {
-        $(this).closest('section.Observation--placeRecentVisits').css('display', 'none');
+        $(this).css('display', 'none');
       }
     });
   }
 
-  $('div.Observation-species h3').each(function () {
-    let name = $(this).contents().text().trim().replace(/\s{2,}/, ' ');
+  $('div.Chk-observer').each(function () {
+    let name = $(this).find('span:last-child').contents().text().trim().replace(/\s{2,}/, ' ');
     $(this).prepend('<span style="font-weight: normal; cursor: pointer; margin-right: 6px;" title="Hide all checklists from ' + name + '">x</span> ');
-    $(this).attr('data-observer', name);
+    $(this).parent().attr('data-observer', name);
     $(this).children(":first").click(function () {
       hideObserver(name);
     });
@@ -66,38 +65,33 @@ GM_addStyle('svg.Icon--locationGeneric{ display: none; }');
   // Hide all checklists from selected locations.
 
   function hideLocation(name) {
-    $('div.Meta--location').each(function () {
+    $('li.Chk').each(function () {
       if (name ===  $(this).attr('data-location')) {
-        $(this).closest('section.Observation--placeRecentVisits').css('display', 'none');
+        $(this).css('display', 'none');
       }
     });
   }
 
-  $('div.Meta--location').each(function () {
-    let name = $(this).contents().text().trim().replace(/\s{2,}/, ' ');
+  $('div.Chk-location').each(function () {
+    let name = $(this).find('span.u-loc-name').contents().text().trim().replace(/\s{2,}/, ' ');
     if (name !== "Location") {
       $(this).prepend('<span style="font-weight: normal; cursor: pointer; margin-right: 6px;" title="Hide all checklists for ' + name + '">x</span> ');
-      $(this).attr('data-location', name);
+      $(this).parent().attr('data-location', name);
       $(this).children(":first").click(function () {
         hideLocation(name);
       });
     }
   });
 
-  // Hide all checklists that contain latitude and longitude in the name.
+  // Hide all checklists that are not from a hotspot
 
-//  const coords = /\-?\d{1,2}[.,]\d{1,5}[,x] ?\-?\d{1,2}[.,]\d{1,5}/;
-//
-//  $('div.Meta--location span.Meta-label').each(function () {
-//    let name = $(this).contents().text().trim();
-//    if (coords.test(name)) {
-//      $(this).closest('section.Observation--placeRecentVisits').css('display', 'none');
-//    }
-//  });
+  $('span.u-loc-name').each(function () {
+    $(this).closest('li.Chk').css({display:"none"});
+  });
 
   // Open checklists in a new tab view.
 
-  $('div.Meta--date a.Meta-label').each(function () {
+  $('div.Chk-species a').each(function () {
     $(this).attr('target', '_blank');
   });
 
